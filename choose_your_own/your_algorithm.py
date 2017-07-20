@@ -31,11 +31,25 @@ plt.show()
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
+from sklearn.neighbors import KNeighborsClassifier
+from time import time
+from sklearn.naive_bayes import GaussianNB
+
+#clf = KNeighborsClassifier(n_neighbors=3) #k nearest neighbor
+clf = GaussianNB()
+
+t0 = time()
+clf = clf.fit(features_train, labels_train) 
+print "fitting time:", round(time()-t0, 3), "s"
 
 
+tp = time()
+pred = clf.predict(features_test)
+print "predicting time:", round(time()-tp, 3), "s"
 
 
-
+accuracy = clf.score(features_test, labels_test)
+print "accuracy", round(accuracy, 3)
 
 
 try:
