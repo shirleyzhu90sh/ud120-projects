@@ -14,7 +14,13 @@ def outlierCleaner(predictions, ages, net_worths):
     cleaned_data = []
 
     ### your code goes here
+    whole_data = []
+    from operator import itemgetter
 
-    
+    for i in range(len(ages)):
+        whole_data.append((ages[i], net_worths[i], abs(predictions[i]-net_worths[i])))
+    whole_data.sort(key=itemgetter(2))
+    cleaned_data = whole_data[:80]
+
     return cleaned_data
 
